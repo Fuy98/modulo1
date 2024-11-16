@@ -1,5 +1,8 @@
 package com.anahuac.mayab.modulo1.sesion3;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -8,7 +11,7 @@ public class CartillaPerro {
 	
 	private Perro datosPerro;
 	private String idCartilla;
-	HashMap<String, ArrayList<String>> vacunas;
+	HashMap<String, ArrayList<String>> vacunas = new HashMap<>();
 	
 	//Constructores
 	public CartillaPerro() {}
@@ -22,7 +25,7 @@ public class CartillaPerro {
 		this.idCartilla = idCartilla;
 	}	
 	
-	//Getters and Stters
+	//Getters and Setters
 
 	public void setDatosPerro(Perro datosPerro) {
 		this.datosPerro = datosPerro;
@@ -47,13 +50,55 @@ public class CartillaPerro {
 			fechas.add(fechaaplicacion);
 			vacunas.put(nombreVacuna, fechas);
 		}
-		else {
+		else { //No existe
 			ArrayList<String> fechas = new ArrayList<>();
 			fechas.add(fechaaplicacion);
 			vacunas.put(nombreVacuna, fechas);
 		}
 		
-		
 	}
+	
+	public void imprimirCartilla() {
+		System.out.println("------- Datos Perro -------");
+		System.out.println(datosPerro.toString());
+		System.out.println("-------------");
+		for(String vacuna : vacunas.keySet()) {
+			System.out.println("Vacuna : " + vacuna);
+			ArrayList<String> fechas = vacunas.get(vacuna);
+			for(String fecha : fechas) {
+				System.out.println("Fecha : " + fecha);
+			}
+			System.out.println("-------------");
+		}
+	}
+	
+	public void imprimirExpediente() throws IOException {
+		String nombreArchivo = datosPerro.getNombre() + ".txt";
+		FileWriter archivo;
+		//try 
+        //{
+			archivo = new FileWriter(nombreArchivo);
+            PrintWriter pw = new PrintWriter(archivo);
+            
+            pw.print("------ Datos Perro ------\n");
+            pw.print(datosPerro.toString());
+            pw.print("\n-------------\n");
+            //pw.print("\nde java y python");
+            for(String vacuna : vacunas.keySet()) {
+    			pw.println("Vacuna : " + vacuna);
+    			ArrayList<String> fechas = vacunas.get(vacuna);
+    			for(String fecha : fechas) {
+    				pw.println("Fecha : " + fecha);
+    			}
+    			pw.println("-------------");
+            }
+            pw.close();
+
+        //} catch (IOException e) {
+        //	System.out.println("Hubo un problema al intentar crear el archivo: " + nombreArchivo);
+        //    e.printStackTrace();
+        //}
+	}
+	
 
 }

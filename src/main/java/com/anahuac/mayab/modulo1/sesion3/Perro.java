@@ -9,6 +9,7 @@ public class Perro {
 	private String nombreDuenio;
 	private int edad;
 	
+	
 	public Perro() {
 		
 	}
@@ -74,5 +75,14 @@ public class Perro {
 	public void ladrar() {
 		System.out.println("Me llamo: " + this.nombre + " Mi dueño es: " + this.nombreDuenio + " y estoy ladrando : gua gua");
 	}
+
+
+	@Override
+	public String toString() {
+		return "Perro [raza=" + raza + ", tamanio=" + tamanio + ", peso=" + peso + ", nombre=" + nombre
+				+ ", nombreDuenio=" + nombreDuenio + ", edad=" + edad + "]";
+	}
+	
+	
 
 }

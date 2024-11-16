@@ -1,7 +1,7 @@
 package com.anahuac.mayab.modulo1.sesion3;
 import java.util.Random;
 import java.util.ArrayList;
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
@@ -118,5 +118,7 @@ public class TestPerro {
 		 for(Perro p : mapPerros.values()) {
 			 p.ladrar();
 		 }
+		 
+		 
 	}
 }
